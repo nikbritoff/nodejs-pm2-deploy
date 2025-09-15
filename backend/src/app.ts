@@ -3,6 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
 import errorHandler from './middlewares/error-handler';
@@ -15,6 +16,11 @@ mongoose.connect(DB_ADDRESS);
 
 // Только для локальных тестов. Не используйте это в продакшене
 app.use(helmet());
+app.use(cors({
+  origin: 'https://britoff.student.nomorepartiessbs.ru',
+  credentials: true,
+}));
+app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
