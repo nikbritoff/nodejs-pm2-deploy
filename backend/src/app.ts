@@ -17,7 +17,7 @@ mongoose.connect(DB_ADDRESS);
 // Только для локальных тестов. Не используйте это в продакшене
 app.use(helmet());
 app.use(cors({
-  origin: 'https://britoff.student.nomorepartiessbs.ru',
+  origin: true,
   credentials: true,
 }));
 app.options('*', cors());
